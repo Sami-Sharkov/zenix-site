@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zenix Ark Server Settings</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    /* Settings specific adjustments overlay */
+    body {
+      padding-top: 100px; /* Space for fixed nav */
+      background: radial-gradient(circle at top right, #1a1a2e 0%, #121212 100%);
+      min-height: 100vh;
+    }
+    
+    .settings-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 60px 20px;
+    }
+    
+    .settings-header {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeInDown 0.8s ease-out forwards;
+    }
+    
+    .settings-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    
+    .setting-section {
+      background: rgba(20, 20, 25, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 0.5s ease-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .setting-section:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 242, 254, 0.2);
+      box-shadow: 0 15px 40px rgba(0, 242, 254, 0.1);
+    }
+    
+    /* Staggering animations */
+    .setting-section:nth-child(1) { animation-delay: 0.1s; }
+    .setting-section:nth-child(2) { animation-delay: 0.2s; }
+    .setting-section:nth-child(3) { animation-delay: 0.3s; }
+    .setting-section:nth-child(4) { animation-delay: 0.4s; }
+    .setting-section:nth-child(5) { animation-delay: 0.5s; }
+    .setting-section:nth-child(6) { animation-delay: 0.6s; }
+    .setting-section:nth-child(7) { animation-delay: 0.7s; }
+    .setting-section:nth-child(8) { animation-delay: 0.8s; }
+
+    .setting-section h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: #00f2fe;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .setting-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .setting-list li {
+      padding: 10px 15px;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+    
+    .setting-list li:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-left: 3px solid #4facfe;
+    }
+
+    .list-icon {
+      color: #4facfe;
+      margin-right: 12px;
+      margin-top: 3px;
+    }
+
+    /* Back Button */
+    .back-nav {
+      position: absolute;
+      top: 120px;
+      left: 20px;
+      z-index: 10;
+    }
+    
+    .back-btn {
+      color: #e0e0e0;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.05);
+      padding: 10px 20px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .back-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #00f2fe;
+      border-color: #00f2fe;
+    }
+
+    /* Simple Keyframe animations for this page */
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="main-nav glass-effect">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-text">Zenix <span class="accent">Ark</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="http://tribal-ark.tebex.io/" target="_blank"><i class="fa-solid fa-store"></i> Store</a></li>
+        <li><a href="https://discord.gg/pTbw5xKcRB" target="_blank" class="discord-btn"><i class="fa-brands fa-discord"></i> Discord</a></li>
+      </ul>
+      <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="back-nav">
+    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  </div>
+
+  <div class="settings-container">
+    <div class="settings-header">
+      <h1>Server <span class="gradient-text">Configuration</span></h1>
+      <p style="color: #a0a0a0;">Everything you need to know about our rates, rules, and rulesets.</p>
+    </div>
+
+    <!-- Official Rules Accordion -->
+    <div class="rules-section reveal">
+      <div class="section-heading" style="margin-bottom: 30px;">
+        <h2><i class="fa-solid fa-gavel text-accent"></i> Official Rules</h2>
+      </div>
+      <div class="accordion">
+        <details class="accordion-item glass-card">
+          <summary>Mesh Cheating & Exploits</summary>
+          <div class="accordion-content">
+            <p>Using any exploit to get under the map, inside geometry, or access areas normally unplayable is strictly prohibited. This results in an immediate and permanent ban. Always build and fight transparently above ground.</p>
+          </div>
+        </details>
+        
+        <details class="accordion-item glass-card">
+          <summary>Hacking & 3rd Party Software</summary>
+          <div class="accordion-content">
+            <p>Aimbots, ESP, memory editors, macros for rapid fire, or any other unauthorized 3rd party tools that give an unfair advantage are forbidden. We actively monitor all players and ban immediately.</p>
+          </div>
+        </details>
+        
+        <details class="accordion-item glass-card">
+          <summary>Respect & Behavior</summary>
+          <div class="accordion-content">
+            <p>While this is a PvP server and trash talk is part of the game, strictly no slurs, racism, doxing, or real-life threats will be tolerated. Keep the battles ingame.</p>
+          </div>
+        </details>
+
+        <details class="accordion-item glass-card">
+          <summary>FOB & Raiding Rules</summary>
+          <div class="accordion-content">
+            <p>You may FOB to grief, but you must completely clean up your FOB structure once the raid/defense is concluded. Do not leave spam unnecessarily across the map.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Configuration Grid -->
+    <div class="settings-grid" style="margin-top: 60px;">
+      
+      <!-- Section 1 -->
+      <div class="setting-section">
+        <h2><i class="fa-solid fa-server"></i> General Settings</h2>
+        <ul class="setting-list">
+          <li><i class="fa-solid fa-chevron-right list-icon"></i> Mode: PvP</li>
+          <li><i class="fa-solid fa-chevron-right list-icon"></i> Tribe Limit: 4 Man</li>
+          <li><i class="fa-solid fa-chevron-right list-icon"></i> Max Player Level: 105 + Ascensions + Chibis</li>
+          <li><i class="fa-solid fa-chevron-right list-icon"></i> Max Wild Dino Level: 150</li>
+          <li><i class="fa-solid fa-chevron-right list-icon"></i> Unlimited Mindwipe Respecs: True</li>
+          <li><i class="fa-solid fa-chevron-right list-icon"></i> No Structure Collision: True</li>
+          <li><i class="fa-solid fa-chevron-right list-icon"></i> No Diseases, Custom Recipes</li>
+          <li><i class="fa-solid fa-chevron-right list-icon"></i> Always Allow Structure Pickup: True</li>
+        </ul>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="setting-section">
+        <h2><i class="fa-solid fa-chart-line"></i> Rates</h2>
+        <ul class="setting-list">
+          <li><i class="fa-solid fa-angle-up list-icon"></i> XP Gain: 25x</li>
+          <li><i class="fa-solid fa-angle-up list-icon"></i> Harvest: 15x (7.5x for Element)</li>
+          <li><i class="fa-solid fa-angle-up list-icon"></i> Taming: Instant</li>
+          <li><i class="fa-solid fa-angle-up list-icon"></i> Mature Speed: 100x</li>
+          <li><i class="fa-solid fa-angle-up list-icon"></i> Mating Interval: 0.12x</li>
+        </ul>
+      </div>
+
+      <!-- Section 8 -->
+      <div class="setting-section">
+        <h2><i class="fa-solid fa-user-ninja"></i> Player Multipliers</h2>
+        <ul class="setting-list">
+          <li><i class="fa-solid fa-heart list-icon"></i> Health: 2x (Cap: 800)</li>
+          <li><i class="fa-solid fa-bolt list-icon"></i> Stamina: 2x</li>
+          <li><i class="fa-solid fa-lungs list-icon"></i> Oxygen: 5x</li>
+          <li><i class="fa-solid fa-person-running list-icon"></i> Movement: 1x (Cap: 169)</li>
+          <li><i class="fa-solid fa-weight-hanging list-icon"></i> Weight: Infinite</li>
+          <li><i class="fa-solid fa-hammer list-icon"></i> Crafting Skill: 40x (Cap: 1600)</li>
+        </ul>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="setting-section">
+        <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Custom Recipes</h2>
+        <ul class="setting-list">
+          <li><i class="fa-solid fa-flask list-icon"></i> Mindwipe: 250 Narcotic & 250 Mejoberry</li>
+          <li><i class="fa-solid fa-bone list-icon"></i> Kibbles: Berries & Thatch</li>
+          <li><i class="fa-solid fa-cake-candles list-icon"></i> Veggie Cake: 50 Stimulant & 500 Fiber</li>
+          <li><i class="fa-solid fa-arrow-up list-icon"></i> Tranq Arrow: Stone Arrow & 5 Narcoberry</li>
+          <li><i class="fa-solid fa-anchor list-icon"></i> Grapple: 9 Metal Ingots</li>
+          <li><i class="fa-solid fa-box-archive list-icon"></i> Empty Cryopod: 15 Fiber, 2 Ingot, 5 Hide</li>
+          <li><i class="fa-solid fa-shirt list-icon"></i> Tek Suit: 3x Element</li>
+          <li><i class="fa-solid fa-plus list-icon"></i> And many more configured for PvP balance!</li>
+        </ul>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="setting-section">
+        <h2><i class="fa-solid fa-dragon"></i> Dino Tweaks</h2>
+        <ul class="setting-list">
+          <li><i class="fa-solid fa-paw list-icon"></i> Velonsaur: 2x Damage</li>
+          <li><i class="fa-solid fa-paw list-icon"></i> Wooly Rhino: 2x Damage</li>
+          <li><i class="fa-solid fa-paw list-icon"></i> Spinosaurus: 2x Damage & 2x Res</li>
+          <li><i class="fa-solid fa-paw list-icon"></i> Ice Wyvern: 2x Damage</li>
+          <li><i class="fa-solid fa-paw list-icon"></i> Tapejara: 2x Health</li>
+          <li><i class="fa-solid fa-paw list-icon"></i> Maewing: 0.2x Health (-80% Nerf)</li>
+          <li><i class="fa-solid fa-weight-hanging list-icon"></i> All Dinos Weight: Infinite</li>
+          <li><i class="fa-solid fa-bolt list-icon"></i> All Dinos Stamina: 4x</li>
+        </ul>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="setting-section">
+        <h2><i class="fa-solid fa-ban"></i> Disabled Taming</h2>
+        <ul class="setting-list">
+          <li><i class="fa-solid fa-xmark list-icon"></i> Ovis</li>
+          <li><i class="fa-solid fa-xmark list-icon"></i> Astrodelphis</li>
+          <li><i class="fa-solid fa-xmark list-icon"></i> Noglin</li>
+          <li><i class="fa-solid fa-xmark list-icon"></i> Iguanodon</li>
+          <li><i class="fa-solid fa-xmark list-icon"></i> Enforcer</li>
+          <li><i class="fa-solid fa-xmark list-icon"></i> Stryder</li>
+          <li><i class="fa-solid fa-xmark list-icon"></i> Fjordhawk</li>
+        </ul>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="setting-section">
+        <h2><i class="fa-solid fa-parachute-box"></i> Drop Quality</h2>
+        <ul class="setting-list">
+          <li><i class="fa-solid fa-caret-right list-icon"></i> White: Basic Starter Kit</li>
+          <li><i class="fa-solid fa-caret-right list-icon" style="color:#2ecc71"></i> Green: Tranqs & Consumables</li>
+          <li><i class="fa-solid fa-caret-right list-icon" style="color:#3498db"></i> Blue: Saddles</li>
+          <li><i class="fa-solid fa-caret-right list-icon" style="color:#9b59b6"></i> Purple: PvP Kit</li>
+          <li><i class="fa-solid fa-caret-right list-icon" style="color:#e74c3c"></i> Red: Armour</li>
+        </ul>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="setting-section">
+        <h2><i class="fa-solid fa-terminal"></i> In-Game Commands</h2>
+        <ul class="setting-list">
+          <li><i class="fa-solid fa-code list-icon"></i> /shop or F2: Open Shop</li>
+          <li><i class="fa-solid fa-code list-icon"></i> /GiveEngrams: Unlock All</li>
+          <li><i class="fa-solid fa-code list-icon"></i> /points: Show Points balance</li>
+          <li><i class="fa-solid fa-code list-icon"></i> /suicide: Instant Death</li>
+          <li><i class="fa-solid fa-code list-icon"></i> /setorp: Place ORP</li>
+          <li><i class="fa-solid fa-code list-icon"></i> /turrets on/off: Toggle turrets state</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
